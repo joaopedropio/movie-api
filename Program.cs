@@ -14,11 +14,12 @@ namespace Movie
         {
             var config = new Configurations();
 
+            Database.Bootstrap(config.ConnectionString);
+
             return WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
                 .UseUrls(config.URL)
                 .Build();
         }
-            
     }
 }
