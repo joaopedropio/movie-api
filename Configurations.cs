@@ -7,16 +7,24 @@ namespace Movie
         public string Port { get; private set; }
         public string Domain { get; private set; }
         public string URL { get; private set; }
-        public string ConnectionString { get; private set; }
+        public string DBServer { get; private set; }
+        public string DBName { get; private set; }
+        public string DBUser { get; private set; }
+        public string DBPass { get; private set; }
+        public string ConnectionString { get; set; }
 
         public Configurations() : this(new ConfigurationBuilder().AddEnvironmentVariables().Build()) { }
 
         public Configurations(IConfigurationRoot configuration)
         {
-            this.ConnectionString = configuration.GetValue<string>("CONNECTION_STRING");
-            this.Domain = configuration.GetValue<string>("API_DOMAIN") ?? "*";
-            this.Port = configuration.GetValue<string>("API_PORT") ?? "5000";
-            this.URL = string.Format($"http://{this.Domain}:{this.Port}");
+            Domain = configuration.GetValue<string>("API_DOMAIN") ?? "*";
+            Port = configuration.GetValue<string>("API_PORT") ?? "5000";
+            URL = string.Format($"http://{this.Domain}:{this.Port}");
+            DBServer = configuration.GetValue<string>("DB_SERVER") ?? "mysql";
+            DBName = configuration.GetValue<string>("DB_NAME") ?? "MOVIES";
+            DBUser = configuration.GetValue<string>("DB_USER") ?? "movieapi";
+            DBPass = configuration.GetValue<string>("DB_PASS") ?? "movieapi1234";
+            ConnectionString = $"Server={DBServer};Database={DBName};Uid={DBUser};Pwd={DBPass};";
         }
     }
 }

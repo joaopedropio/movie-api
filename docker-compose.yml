@@ -1,0 +1,38 @@
+version: '3'
+services:
+  movieapi:
+    build: .
+    image: movie-api
+    depends_on:
+      - mysql
+    environment:
+      - DB_SERVER=mysql
+      - DB_NAME=MOVIES
+      - DB_USER=movieapi
+      - DB_PASS=movieapi1234
+    networks:
+      - socialnetwork
+      - movieapinetwork
+    ports:
+      - 5000:5000
+  mysql:
+    image: mysql
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=MOVIES
+      - MYSQL_USER=movieapi
+      - MYSQL_PASSWORD=movieapi1234
+    networks:
+      - movieapinetwork
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+    networks:
+      - movieapinetwork
+networks:
+  socialnetwork:
+    external: true
+  movieapinetwork:
