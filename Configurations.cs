@@ -18,7 +18,7 @@ namespace Movie
         public Configurations(IConfigurationRoot configuration)
         {
             Domain = configuration.GetValue<string>("API_DOMAIN") ?? "*";
-            Port = configuration.GetValue<string>("API_PORT") ?? "5000";
+            Port = configuration.GetValue<string>("API_PORT") ?? "80";
             URL = string.Format($"http://{this.Domain}:{this.Port}");
             DBServer = configuration.GetValue<string>("DB_SERVER") ?? "mysql";
             DBName = configuration.GetValue<string>("DB_NAME") ?? "Movies";

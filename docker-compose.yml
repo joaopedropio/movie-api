@@ -5,7 +5,7 @@ services:
     restart: always
     environment:
       - MYSQL_ROOT_PASSWORD=password
-      - MYSQL_DATABASE=MOVIES
+      - MYSQL_DATABASE=Movies
       - MYSQL_USER=movieapi
       - MYSQL_PASSWORD=movieapi1234
     networks:
@@ -17,14 +17,12 @@ services:
       - mysql
     environment:
       - DB_SERVER=mysql
-      - DB_NAME=MOVIES
+      - DB_NAME=Movies
       - DB_USER=movieapi
       - DB_PASS=movieapi1234
     networks:
       - socialnetwork
       - movieapinetwork
-    ports:
-      - 5000:5000
 networks:
   socialnetwork:
     external: true
