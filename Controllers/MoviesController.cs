@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Movie.Controllers
 {
     [Produces("application/json")]
-    [Route("api/movies")]
+    [Route("movies")]
     public class MoviesController : Controller
     {
         private MovieRepository repo;

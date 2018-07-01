@@ -12,10 +12,10 @@ namespace Movie
             {
                 var query = @"
                     CREATE TABLE IF NOT EXISTS Movies (
-                        id int,
-                        Name varchar(255),
-                        Description varchar(255),
-                        Path varchar(255)
+                        id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+                        Name VARCHAR(255),
+                        Description VARCHAR(255),
+                        Path VARCHAR(255)
                     );
                     INSERT INTO Movies (id, name, description, path)
                     VALUES (1, 'senhor dos aneis', 'aventura muito louca', 'senhordosaneis');
