@@ -23,32 +23,33 @@ namespace Movie.Controllers
         }
 
         [HttpGet("{id}")]
-        public JsonResult GetById(int id)
+        public IActionResult GetById(int id)
         {
             var movie = repo.GetMovieById(id);
-            return new JsonResult((object)movie ?? new { });
+            if (movie == null)
+            {
+                return new StatusCodeResult(404);
+            }
+
+            return new JsonResult(movie);
         }
 
         [HttpDelete("{id}")]
-        public JsonResult DeleteById(int id)
+        public StatusCodeResult DeleteById(int id)
         {
             var isDeleted = repo.DeleteMovieById(id);
             var status = isDeleted ? StatusCodes.Status204NoContent
                                    : StatusCodes.Status404NotFound;
-            var json = new JsonResult(new { });
-            json.StatusCode = status;
-            return json;
+            return new StatusCodeResult(status);
         }
 
         [HttpPost]
-        public JsonResult Insert([FromBody]Movie movie)
+        public StatusCodeResult Insert([FromBody]Movie movie)
         {
             var isCreated = repo.InsertMovie(movie);
             var status = isCreated ? StatusCodes.Status201Created
                                    : StatusCodes.Status409Conflict;
-            var json = new JsonResult(new { });
-            json.StatusCode = status;
-            return json;
+            return new StatusCodeResult(status);
         }
     }
 }
