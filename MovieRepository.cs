@@ -27,7 +27,7 @@ namespace Movie
             using (var conn = new MySqlConnection(connectionString))
             {
                 var query = $"SELECT * FROM Movies WHERE ID = '{id}'";
-                return conn.QuerySingle<Movie>(query);
+                return conn.QueryFirstOrDefault<Movie>(query);
             }
         }
 
@@ -37,6 +37,17 @@ namespace Movie
             {
                 var query = $"DELETE FROM Movies WHERE ID = '{id}'";
                 var affectedrows = conn.Execute(query);
+                return affectedrows > 0;
+            }
+        }
+
+        public bool InsertMovie(Movie movie)
+        {
+            using (var conn = new MySqlConnection(connectionString))
+            {
+                var query = $"INSERT INTO Movies (name, description, path)" +
+                    $"VALUES ('{movie.Name}', '{movie.Description}', '{movie.Path}')";
+                var affectedrows = conn.Execute(query, movie);
                 return affectedrows > 0;
             }
         }

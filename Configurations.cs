@@ -21,7 +21,7 @@ namespace Movie
             Port = configuration.GetValue<string>("API_PORT") ?? "5000";
             URL = string.Format($"http://{this.Domain}:{this.Port}");
             DBServer = configuration.GetValue<string>("DB_SERVER") ?? "mysql";
-            DBName = configuration.GetValue<string>("DB_NAME") ?? "MOVIES";
+            DBName = configuration.GetValue<string>("DB_NAME") ?? "Movies";
             DBUser = configuration.GetValue<string>("DB_USER") ?? "movieapi";
             DBPass = configuration.GetValue<string>("DB_PASS") ?? "movieapi1234";
             ConnectionString = $"Server={DBServer};Database={DBName};Uid={DBUser};Pwd={DBPass};";
