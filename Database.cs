@@ -18,7 +18,7 @@ namespace Movie
                         Path VARCHAR(255)
                     );
                     INSERT INTO Movies (name, description, path)
-                    VALUES ('senhor dos aneis', 'aventura muito louca', 'senhordosaneis');
+                    VALUES ('senhor dos aneis', 'aventura muito louca', 'senhordosaneis34');
                 ";
 
                 var command = connection.CreateCommand();
