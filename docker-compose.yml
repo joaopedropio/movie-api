@@ -11,8 +11,7 @@ services:
     networks:
       - movieapinetwork
   movieapi:
-    build: .
-    image: movie-api
+    image: joaopio/movie-api
     depends_on:
       - mysql
     environment:
